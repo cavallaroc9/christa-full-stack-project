@@ -1,4 +1,4 @@
-<% project_name = 'christa-full-stack-project' %>
+<% project_name = 'christa-rails-api' %>
 
 default: &default
   adapter: postgresql
