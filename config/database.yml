@@ -1,4 +1,4 @@
-<% project_name = 'christa-project-2' %>
+<% project_name = 'christa-full-stack-project' %>
 
 default: &default
   adapter: postgresql
