@@ -1,4 +1,4 @@
-class ExercisesController < ApplicationController
+class ExercisesController < ProtectedController
   before_action :set_exercise, only: [:show, :update, :destroy]
 
   # GET /exercises
