@@ -3,7 +3,7 @@ class ExercisesController < ProtectedController
 
   # GET /exercises
   def index
-    @exercises = Exercise.all
+    @exercises = current_user.exercises.all
 
     render json: @exercises
   end
@@ -15,7 +15,7 @@ class ExercisesController < ProtectedController
 
   # POST /exercises
   def create
-    @exercise = Exercise.new(exercise_params)
+    @exercise = current_user.exercises.build(exercise_params)
 
     if @exercise.save
       render json: @exercise, status: :created, location: @exercise
@@ -39,13 +39,14 @@ class ExercisesController < ProtectedController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_exercise
-      @exercise = Exercise.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def exercise_params
-      params.require(:exercise).permit(:name, :weight, :sets, :reps, :notes)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_exercise
+    @exercise = current_user.exercises.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def exercise_params
+    params.require(:exercise).permit(:name, :weight, :sets, :reps, :notes)
+  end
 end
